@@ -1,6 +1,5 @@
-Exercícios de Backend em Java
-Descrição
-Este repositório contém uma série de exercícios de backend desenvolvidos em Java. Os exercícios cobrem diferentes conceitos de programação, incluindo orientação a objetos, herança, exceções, coleções e interfaces. Cada exercício é projetado para reforçar habilidades específicas no desenvolvimento de software, como manipulação de classes, controle de fluxo, manipulação de coleções, e implementação de interfaces.
+Lista de Backend
+
 
 Exercícios
 Exercício 00: Gerador de Username
