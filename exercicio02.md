@@ -33,3 +33,66 @@ Orc foi derrotado!
 Goblin foi derrotado!
 Steve foi derrotado!
 ````
+
+### RESOLUÇÃO ###
+
+import random
+
+class Personagem:
+    def __init__(self, nome, vida, ataque):
+        self.nome = nome
+        self.vida = vida
+        self.ataque = ataque
+
+    def receberDano(self, dano):
+        self.vida -= dano
+        if self.vida <= 0:
+            self.vida = 0
+            print(f"{self.nome} foi derrotado!")
+    
+    def atacar(self, alvo):
+        if self.vida > 0:
+            if alvo.vida > 0:
+                alvo.receberDano(self.ataque)
+            else:
+                print(f"O ataque falhou! {alvo.nome} já está derrotado.")
+        else:
+            print(f"{self.nome} não pode atacar porque foi derrotado.")
+
+def main():
+    # Criando uma lista de inimigos
+    inimigos = [
+        Personagem("Orc", 100, 10),
+        Personagem("Goblin", 50, 5),
+        Personagem("Lobo", 75, 15),
+        Personagem("Cavaleiro", 200, 20),
+        Personagem("Dragão", 500, 50)
+    ]
+
+    # Criando o personagem jogador
+    jogador = Personagem("Steve", 100, 20)
+
+    # Loop da batalha
+    while jogador.vida > 0 and any(inimigo.vida > 0 for inimigo in inimigos):
+        # Jogador ataca um inimigo aleatório
+        inimigo_vivo = [inimigo for inimigo in inimigos if inimigo.vida > 0]
+        alvo = random.choice(inimigo_vivo)
+        print(f"\n{jogador.nome} está atacando {alvo.nome}!")
+        jogador.atacar(alvo)
+        
+        # Inimigos atacam o jogador
+        for inimigo in inimigos:
+            if inimigo.vida > 0:
+                print(f"\n{inimigo.nome} está atacando {jogador.nome}!")
+                inimigo.atacar(jogador)
+            if jogador.vida <= 0:
+                break
+    
+    # Resultado final
+    if jogador.vida > 0:
+        print("\nSteve venceu a batalha!")
+    else:
+        print("\nSteve foi derrotado!")
+
+# Executa a função principal
+main()
