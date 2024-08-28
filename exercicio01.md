@@ -32,3 +32,43 @@ O usuário responderá a cada pergunta digitando os números 1 ou 2 pelo console
 
 ## Saídas (outputs)
 O programa exibirá o nome de uma série, livro ou filme recomendado com base nas respostas. Ex.: (`Homens de Preto`)
+
+
+### RESOLUÇÃO ###
+
+def recomendador_filmes():
+    # Pergunta 1: Que ambientação você prefere?
+    print("Pergunta 1: Que ambientação você prefere?")
+    print("  1. Sci-fi")
+    print("  2. Medieval")
+    resposta1 = input("Digite 1 ou 2: ")
+    
+    # Verifica se a resposta é válida
+    if resposta1 not in ['1', '2']:
+        return
+    
+    # Pergunta 2: Que gênero você prefere?
+    print("\nPergunta 2: Que gênero você prefere?")
+    print("  1. Comédia")
+    print("  2. Drama")
+    resposta2 = input("Digite 1 ou 2: ")
+    
+    # Verifica se a resposta é válida
+    if resposta2 not in ['1', '2']:
+        return
+    
+    # Recomendação com base nas respostas
+    if resposta1 == '1' and resposta2 == '1':
+        recomendacao = "Homens de Preto"
+    elif resposta1 == '1' and resposta2 == '2':
+        recomendacao = "Arrival"
+    elif resposta1 == '2' and resposta2 == '1':
+        recomendacao = "Shrek"
+    elif resposta1 == '2' and resposta2 == '2':
+        recomendacao = "Gladiador"
+    
+    # Exibe a recomendação
+    print(f"\nRecomendação: {recomendacao}")
+
+# Executa a função recomendador de filmes
+recomendador_filmes()
