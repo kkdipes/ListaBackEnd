@@ -36,3 +36,66 @@ Barco 3 atracado no porto pequeno
 Barco 4 atracado no porto grande
 Barco 5 atracado no porto grande
 ````
+
+
+
+### RESOLUÇÃO ###
+
+class Barco:
+    def __init__(self, nome, tamanho):
+        self.nome = nome
+        self.tamanho = tamanho
+
+class BasePorto:
+    def __init__(self, nome):
+        self.nome = nome
+        self.barcosAtracados = []
+
+    def atracarBarco(self, barco):
+        self.barcosAtracados.append(barco)
+        print(f"{barco.nome} atracado no {self.nome}")
+
+    def desatracarBarco(self, barco):
+        if barco in self.barcosAtracados:
+            self.barcosAtracados.remove(barco)
+            print(f"{barco.nome} desatracado do {self.nome}")
+        else:
+            print(f"{barco.nome} não está atracado no {self.nome}")
+
+class PortoPequeno(BasePorto):
+    def atracarBarco(self, barco):
+        if barco.tamanho <= 10:
+            super().atracarBarco(barco)
+        else:
+            print(f"{barco.nome} é muito grande para o {self.nome}")
+
+class PortoGrande(BasePorto):
+    def atracarBarco(self, barco):
+        if barco.tamanho >= 10:
+            super().atracarBarco(barco)
+        else:
+            print(f"{barco.nome} é muito pequeno para o {self.nome}")
+
+def main():
+    # Criando uma lista de barcos
+    barcos = [
+        Barco("Barco 1", 2),
+        Barco("Barco 2", 5),
+        Barco("Barco 3", 7),
+        Barco("Barco 4", 12),
+        Barco("Barco 5", 20)
+    ]
+
+    # Criando os portos
+    porto_pequeno = PortoPequeno("Porto Pequeno")
+    porto_grande = PortoGrande("Porto Grande")
+
+    # Tentando atracar cada barco
+    for barco in barcos:
+        if barco.tamanho <= 10:
+            porto_pequeno.atracarBarco(barco)
+        else:
+            porto_grande.atracarBarco(barco)
+
+# Executa a função principal
+main()
