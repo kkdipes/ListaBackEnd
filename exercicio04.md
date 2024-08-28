@@ -39,3 +39,65 @@ Playlist:
 - Macarena
 - Evidências
 ````
+
+###  RESOLUÇÃO ###
+
+class Musica:
+    def __init__(self, titulo, artista):
+        self.titulo = titulo
+        self.artista = artista
+
+    def __str__(self):
+        return f"{self.titulo} - {self.artista}"
+
+class Playlist:
+    def __init__(self, nome):
+        self.nome = nome
+        self.musicas = []
+
+    def adicionar_musica(self, musica):
+        self.musicas.append(musica)
+        print(f"Você adicionou a música {musica.titulo} na playlist.")
+
+    def mostrar_playlist(self):
+        print(f"\nPlaylist: {self.nome}")
+        for musica in self.musicas:
+            print(f"- {musica.titulo}")
+
+class MusicCloud:
+    def __init__(self):
+        self.musicasDisponiveis = [
+            Musica("Hino do Real Paulista", "Artista Desconhecido"),
+            Musica("Macarena", "Los Del Rio"),
+            Musica("Evidências", "Chitãozinho & Xororó"),
+            Musica("Thriller", "Michael Jackson"),
+            Musica("Bohemian Rhapsody", "Queen")
+        ]
+
+    def pesquisar_musica(self, titulo):
+        for musica in self.musicasDisponiveis:
+            if musica.titulo.lower() == titulo.lower():
+                return musica
+        return None
+
+def main():
+    music_cloud = MusicCloud()
+    
+    playlist_nome = input("Digite o nome da playlist: ")
+    playlist = Playlist(playlist_nome)
+    
+    while True:
+        titulo_musica = input("\nDigite o nome da música (ou 'sair' para finalizar): ")
+        if titulo_musica.lower() == 'sair':
+            break
+        
+        musica_encontrada = music_cloud.pesquisar_musica(titulo_musica)
+        if musica_encontrada:
+            playlist.adicionar_musica(musica_encontrada)
+        else:
+            print(f"A música {titulo_musica} não foi encontrada no sistema.")
+    
+    playlist.mostrar_playlist()
+
+# Executa a função principal
+main()
