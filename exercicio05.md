@@ -1,5 +1,6 @@
 # Exercício 05: Compartilhar Postagem
 
+
 ## Objetivo
 
 Crie um programa, utilizando Interfaces, para implementar o compartilhamento em diferentes plataformas de mídia social.
