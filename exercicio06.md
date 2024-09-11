@@ -1,5 +1,6 @@
 # Exercício 06: Ticket do Cinema
 
+
 ## Objetivo
 
 Crie um programa, utilizando Exceções e Collections, que permita realizar a compra de tickets para assistir filmes no cinema.
