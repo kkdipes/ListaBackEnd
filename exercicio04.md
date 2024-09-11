@@ -1,5 +1,6 @@
 # Exercício 04: Buscador de Músicas
 
+
 ## Objetivo
 
 Crie um programa, utilizando Collections e Exceptions, que seja capaz de armazenar uma lista de músicas e permita o usuário criar playlists.
