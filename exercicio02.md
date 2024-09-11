@@ -1,5 +1,6 @@
 # Exercício 02: Gerador de Personagem
 
+
 ## Objetivo
 
 Criar um programa que gere e manipule personagens de jogo usando classes.
