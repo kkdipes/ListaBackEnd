@@ -1,5 +1,6 @@
 # Exercício 00: Gerador de Username
 
+
 ## Objetivo
 
 Criar um programa que gere nomes de usuário (usernames) baseados em dois nomes fornecidos pelo usuário e um número aleatório.
