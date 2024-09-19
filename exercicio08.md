@@ -31,5 +31,62 @@ Saídas (outputs)
 
 ## RESOLUÇÃO ##
 
+public class CarroRequest {
+    private String marca;
+    private String modelo;
+    private Integer ano;
 
     
+}
+
+ public class CarroResponse {
+    private String valor;
+    private String mes;
+
+    
+}
+   
+@RestController
+@RequestMapping("/fipe")
+public class FipeController {
+
+    @Autowired
+    private FipeService fipeService;
+
+    @PostMapping("/valor")
+    public ResponseEntity<CarroResponse> obterValorFipe(@RequestBody CarroRequest carroRequest) {
+        CarroResponse response = fipeService.obterValorFipe(carroRequest);
+        return ResponseEntity.ok(response);
+    }
+}
+
+@Service
+public class FipeService {
+
+    private static final String URL_BASE = "https://parallelum.com.br/fipe/api/v1";
+
+    public CarroResponse obterValorFipe(CarroRequest carroRequest) {
+        String url = String.format("%s/%s/%s/%s/%d", URL_BASE, carroRequest.getMarca(), carroRequest.getModelo(), carroRequest.getAno());
+        
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Map> response = restTemplate.getForEntity(url, Map.class);
+
+        String valor = (String) response.getBody().get("Valor");
+        String mesReferencia = (String) response.getBody().get("MesReferencia");
+
+        CarroResponse carroResponse = new CarroResponse();
+        carroResponse.setValor(valor);
+        carroResponse.setMes(mesReferencia);
+
+        return carroResponse;
+    }
+}
+
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
