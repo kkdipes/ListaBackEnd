@@ -1,0 +1,25 @@
+A implementação de autenticação multifatorial (MFA) é uma estratégia eficiente que pode ser aplicada em uma API Web para minimizar os riscos de fraudes de engenharia social. A Autenticação Multifator Adiciona uma camada adicional de segurança ao solicitar ao usuário que forneça mais de um método para validar sua identidade.
+
+De que maneira a MFA contribui para prevenir fraudes de engenharia social?
+Ataques de engenharia social, como o phishing, costumam tentar iludir o usuário para obter suas informações de acesso. Ainda que um hacker consiga o login e a senha, a autenticação multifatorial introduz um segundo fator, tal como:
+
+1 Algo que o usuário possui - Código de validação fornecido por SMS, aplicativo de autenticação ou e-mail.
+2 Algo que identifica o utilizador - impressão digital ou reconhecimento facial.
+3 Algo que o usuário conhece - Uma questão de segurança ou um PIN extra.
+
+O segundo elemento impede o invasor de acessar a conta mesmo com as credenciais roubadas, reduzindo o efeito de ataques que utilizam engenharia social.
+
+Conversão em uma API Web
+Endpoints protegidos: Implementar o MFA em endpoints vitais, como a autenticação ou mudanças de senha.
+Rotas específicas para o segundo fator: A API pode possuir uma rota específica /auth/verify-mfa que verifica o código de verificação após o registro.
+
+Expiração do token de MFA: Os tokens temporários de MFA asseguram que o acesso seja disponibilizado apenas por um período limitado, o que complica as tentativas subsequentes.
+
+Exemplo de fluxo:
+
+Na rota /auth/login, o usuário faz o login com suas credenciais.
+A API retorna um token temporário e requer a confirmação de um código enviado pelo aplicativo de autenticação.
+A rota /auth/verify-mfa é usada pelo usuário para enviar o código.
+
+Depois de validada, a API emite um token JWT para permitir o acesso às demais funções.
+Com essa estratégia, mesmo que um criminoso consiga o login e a senha através de phishing ou outra estratégia de engenharia social, ele não conseguirá executar ações na API sem a autenticação de dois fatores.
